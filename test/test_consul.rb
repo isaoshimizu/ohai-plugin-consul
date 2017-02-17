@@ -3,7 +3,7 @@ require "ohai"
 require "tmpdir"
 require "glint"
 
-Ohai::Config[:plugin_path] << "./lib"
+ohai.plugin_path << "./lib"
 server = Glint::Server.new(8500, { :timeout => 3 }) do |port|
   dir = Dir.mktmpdir
   exec "consul", "agent", "-data-dir", dir, "-server", "-bootstrap-expect", "1"
